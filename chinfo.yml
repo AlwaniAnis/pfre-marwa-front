@@ -1,0 +1,133 @@
+{/* <ul>
+              {locales}
+              {locales.map((loc, i) => {
+                return (
+                  <li key={i}>
+                    <Link href={asPath} locale={loc}>
+                      <a hrefLang={loc}>{loc}</a>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            <h2>{locale}</h2>
+            <h3>المصير</h3>
+            <h3>{f({ id: "name" })}</h3> */}
+
+             <div className="alert alert-info" role="alert">
+            <h1>
+              <Link href="/about" locale={locale}>
+                <a hrefLang={locale}></a>
+              </Link>
+            </h1>
+          </div>
+
+
+goto local backend directory
+add the unique remote url of the project 
+git remote origin add https://github.com/Tndevfactory/Azure-Ad-FST-MANAR-PFE.git
+
+// create branch and switch 
+git checkout -b backend  // create branch
+
+//check branch exist optional
+git branch -a  // verify branch
+:wq
+
+// first push to branch backend
+git add .
+git commit -m "commit on backend branch"
+git push --set-upstream origin backend
+
+// normal push to branch backend 
+touch eden.html
+git add .
+git commit -m "Eden added"
+git push origin backend
+
+// return to master 
+git checkout master
+git branch -M master
+git add .
+git commit -m "commit on master"
+git push origin backend
+
+// git clone specific branch
+git clone -b <branchname> <remote-repo-url>
+git clone -b backend https://github.com/Tndevfactory/Azure-Ad-FST-MANAR-PFE.git
+
+// deploy to heroku specifc branch [backend branch]
+git push heroku backend:master
+
+
+// connect heroku 
+
+heroku pg:psql
+
+
+role admin ingen
+adaptation
+note : 
+note : piece jointe
+date : calendrier tache longue () ?
+incident : calendrier 
+filtre : ? 
+
+description textarea
+'pdf' note
+demande de validation
+confirmation de cloture
+pop up creation calendrier
+
+admin
+
+user
+trier par statut
+trier par date
+
+<div style={{ display: "block" }}>
+            <Box component="form">
+              <FormControl variant="standard" sx={{ m: 1, width: 220 }}>
+                <InputLabel id="demo-simple-select-standard-label">
+                  Filtrer par statut
+                </InputLabel>
+                <Select
+                  labelId="trier"
+                  id="trier"
+                  value={statut}
+                  name="trier"
+                  onChange={handleTri}
+                  label="Trier"
+                >
+                  <MenuItem value="">
+                    <em>Aucun</em>
+                  </MenuItem>
+                  <MenuItem value={`en_cours`}>en cours</MenuItem>
+                  <MenuItem value={`résolu`}>résolu</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <Box component="form">
+              <FormControl variant="standard" sx={{ m: 1, width: 220 }}>
+                <InputLabel id="demo-simple-select-standard-label">
+                  Filtrer par proirité
+                </InputLabel>
+                <Select
+                  labelId="trier"
+                  id="trier"
+                  value={statut}
+                  name="trier"
+                  onChange={handleTri}
+                  label="Trier"
+                >
+                  <MenuItem value="">
+                    <em>Aucun</em>
+                  </MenuItem>
+                  <MenuItem value={`haute`}>Haute</MenuItem>
+                  <MenuItem value={`moyenne`}>Moyenne</MenuItem>
+                  <MenuItem value={`basse`}>Basse</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          
+          </div>
