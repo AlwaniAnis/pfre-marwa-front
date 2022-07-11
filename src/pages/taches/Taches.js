@@ -12,7 +12,7 @@ import TableRow from "@mui/material/TableRow";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
-import { tachesMethods } from "../../contexts/TndevContext";
+import { apiEventCreate, tachesMethods } from "../../contexts/TndevContext";
 import {
   Button,
   Collapse,
@@ -138,7 +138,7 @@ export default function Taches() {
           dateProchaineEcheance: Date(),
           dateContrat: Date(),
           dateAppel: Date(),
-          DateTache: Date(),
+          dateTache: Date(),
           userEmail: "",
           id: 0,
         });
@@ -198,7 +198,7 @@ export default function Taches() {
     dateProchaineEcheance: Date(),
     dateContrat: Date(),
     dateAppel: Date(),
-    DateTache: Date(),
+    dateTache: Date(),
     userEmail: "",
     id: 0,
   });
@@ -225,9 +225,19 @@ export default function Taches() {
 
     createRecord(data);
   };
-
+  const addToCalendar = (id) => {
+    let record = taches?.find((i) => i.id === id);
+    let d = new Date(record.dateTache);
+    d.setDate(d.getDate);
+    apiEventCreate({
+      title: record.titre,
+      start: new Date(record.dateTache),
+      end: new Date(record.dateTache),
+    });
+  };
   const handleClickOpenDeleteDialog = (id) => {
     let record = taches?.find((i) => i.id === id);
+
     //console.log(record);
     setRecordDelete(record);
 
@@ -489,9 +499,7 @@ export default function Taches() {
 
                           {role !== "admin" ? (
                             <IconButton
-                              onClick={() =>
-                                handleClickOpenValidationDialog(i.id)
-                              }
+                              onClick={() => addToCalendar(i.id)}
                               aria-label="validationcloture"
                               title="demande de validation de cloture"
                             >
@@ -561,7 +569,7 @@ export default function Taches() {
             dateProchaineEcheance: Date(),
             dateContrat: Date(),
             dateAppel: Date(),
-            DateTache: Date(),
+            dateTache: Date(),
             userEmail: "",
             id: 0,
           });

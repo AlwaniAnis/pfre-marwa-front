@@ -6,7 +6,7 @@ import { apiStatAll } from "../../contexts/TndevContext";
 function Stats() {
   const [stats, setstats] = useState({ data: {}, data2: {}, data3: {} });
 
-  const [data, setDats] = useState({
+  const [data, setDatas] = useState({
     options: {
       chart: {
         id: "basic-bar",
@@ -22,7 +22,7 @@ function Stats() {
       },
     ],
   });
-  const [data2, setDats2] = useState({
+  const [data2, setDatas2] = useState({
     options: {
       chart: {
         id: "basic-bar",
@@ -38,7 +38,7 @@ function Stats() {
       },
     ],
   });
-  const [data3, setDats3] = useState({
+  const [data3, setDatas3] = useState({
     options: {
       chart: {
         id: "basic-bar",
@@ -49,13 +49,70 @@ function Stats() {
     },
     series: [
       {
-        name: "volume taches",
+        name: "",
         data: [20, 45],
       },
     ],
   });
-  useEffect(() => {
-    apiStatAll().then((res) => console.log(res));
+  React.useEffect(() => {
+    apiStatAll().then((res) => {
+      let {
+        closedTachesCount,
+        closedIncidentsCount,
+        closedinterventionsCount,
+        openedTachesCount,
+        openedIncidentsCount,
+        openedinterventionsCount,
+      } = res;
+      setDatas({
+        options: {
+          chart: {
+            id: "basic-bar",
+          },
+          xaxis: {
+            categories: ["incidents ouverts", "incidents cloturés"],
+          },
+        },
+        series: [
+          {
+            name: "volume incidents",
+            data: [openedIncidentsCount, closedIncidentsCount],
+          },
+        ],
+      });
+      setDatas2({
+        options: {
+          chart: {
+            id: "basic-bar",
+          },
+          xaxis: {
+            categories: ["Interventions ouverts", "Interventions cloturés"],
+          },
+        },
+        series: [
+          {
+            name: "volume Interventions",
+            data: [openedinterventionsCount, closedinterventionsCount],
+          },
+        ],
+      });
+      setDatas3({
+        options: {
+          chart: {
+            id: "basic-bar",
+          },
+          xaxis: {
+            categories: ["Taches ouvertes", "Taches cloturées"],
+          },
+        },
+        series: [
+          {
+            name: "volume Taches",
+            data: [openedTachesCount, closedTachesCount],
+          },
+        ],
+      });
+    });
   }, []);
 
   return (
